@@ -5,8 +5,8 @@ package br.com.inm.reqresin.api.services;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import br.com.inm.reqresin.api.services.json.PaginaUsuarioJson;
 import br.com.inm.reqresin.api.services.json.UsuarioJson;
@@ -35,6 +35,8 @@ public class UserListAPI extends UserAPIBase {
 	public static final String PARAM_RESP_SUPPORT_URL = "url";
 	public static final String PARAM_RESP_SUPPORT_TEXT = "text";
 	
+	public static final String PARAM_PATH_PAGE = "page";
+	
 	private PaginaUsuarioJson respostaapi;
 	
 	
@@ -54,9 +56,11 @@ public class UserListAPI extends UserAPIBase {
 	}
 	
 	/**
-	 * Chama o metodo get de lista de usuário, guarda o json de retorno e monta a os dados em uma classe java
+	 * Chama o metodo get de lista de usuário passando o parametro path da página. Caso seja "" vazio, 
+	 *     o parametro não é informado. Também guarda o json de retorno e monta a os dados em uma classe 
+	 *     java apropriada
 	 * 
-	 * @param numerodapagina Numero da pagina a ser retornada
+	 * @param numerodapagina Numero da pagina a ser retornada. Se informado vazio, não utilizada par
 	 * 
 	 */
 	public void chamarAPIListaUsuarios(String numerodapagina) {
@@ -66,7 +70,7 @@ public class UserListAPI extends UserAPIBase {
 		if (numerodapagina.isEmpty())
 			resposta = requisicao.get();
 		else
-			resposta = requisicao.get("/"+numerodapagina);
+			resposta = requisicao.get("?"+PARAM_PATH_PAGE+"="+numerodapagina);
 		
 		guardarResposta();
 		montaPagina();
@@ -78,7 +82,7 @@ public class UserListAPI extends UserAPIBase {
 	 * 
 	 * Valida se o usuario possui os mesmos dados de comparação
 	 * 
-	 * @param numerousuario Numero de usuario (posição na lista)
+	 * @param posicaousuario Posição do usuario na resposta trazida
 	 * @param id
 	 * @param email
 	 * @param primeironome
@@ -86,19 +90,19 @@ public class UserListAPI extends UserAPIBase {
 	 * @param avatar
 	 * @return  true se os dados estiverem ok, retorna falso se tiver algum dado errado, ou se o numero do usuário for maior que a quantidade de usuários presentes
 	 */
-	public boolean verificaDadosUsuario(int numerousuario, int id, String email, String primeironome, String ultimonome, String avatar) {
+	public boolean verificaDadosUsuario(int posicaousuario, int id, String email, String primeironome, String ultimonome, String avatar) {
 
-		if (!(numerousuario <= respostaapi.getTotal())) { 
+		if (!(posicaousuario <= respostaapi.getTotal())) { 
 			return false;
 			}
 		else {
 			UsuarioJson[] usuarios = respostaapi.getData();
 						
-			return (id == usuarios[numerousuario-1].getId())&&
-					(email.equals(usuarios[numerousuario-1].getEmail()))&&
-					(primeironome.equals(usuarios[numerousuario-1].getFirst_name()))&&
-					(ultimonome.equals(usuarios[numerousuario-1].getLast_name()))&&
-					(avatar.equals(usuarios[numerousuario-1].getAvatar())); 
+			return (id == usuarios[posicaousuario-1].getId())&&
+					(email.equals(usuarios[posicaousuario-1].getEmail()))&&
+					(primeironome.equals(usuarios[posicaousuario-1].getFirst_name()))&&
+					(ultimonome.equals(usuarios[posicaousuario-1].getLast_name()))&&
+					(avatar.equals(usuarios[posicaousuario-1].getAvatar())); 
 		}
 	}
 	
@@ -109,17 +113,7 @@ public class UserListAPI extends UserAPIBase {
 	 */
 	private void montaPagina() {
 		
-		int quantidadeusuario = jsonpath.getInt(PARAM_RESP_PERPAGE);
-		List<UsuarioJson> listausuarios = new ArrayList<UsuarioJson>();
-		
-		for (int i=0; i < quantidadeusuario; i=i+1 ) {
-			UsuarioJson usuario = new UsuarioJson(jsonpath.getInt(PARAM_RESP_DATA+"["+i+"]."+PARAM_RESP_DATA_ID),
-					jsonpath.getString(PARAM_RESP_DATA+"["+i+"]."+PARAM_RESP_DATA_EMAIL),
-					jsonpath.getString(PARAM_RESP_DATA+"["+i+"]."+PARAM_RESP_DATA_FIRSTNAME),
-					jsonpath.getString(PARAM_RESP_DATA+"["+i+"]."+PARAM_RESP_DATA_LASTNAME),
-					jsonpath.getString(PARAM_RESP_DATA+"["+i+"]."+PARAM_RESP_DATA_AVATAR));
-			listausuarios.add(usuario);
-		}
+		List <UsuarioJson>listausuarios = jsonpath.getList(PARAM_RESP_DATA, UsuarioJson.class);
 			
 		respostaapi = new PaginaUsuarioJson(jsonpath.getInt(PARAM_RESP_PAGE),
 											jsonpath.getInt(PARAM_RESP_PERPAGE),
@@ -171,6 +165,16 @@ public class UserListAPI extends UserAPIBase {
 
 		return (urlsupport.equals(respostaapi.getSupport().getUrl()))&&
 				(textsupport.equals(respostaapi.getSupport().getText()));
+	}
+
+	/**
+	 * 
+	 * Verifica se não há usuarios na pagina.
+	 * 
+	 * @return
+	 */
+	public boolean verificaSeNaoHaUsuario() {
+		return respostaapi.getData().length==0;
 	}
 	
 	/* packages para separação de codigos

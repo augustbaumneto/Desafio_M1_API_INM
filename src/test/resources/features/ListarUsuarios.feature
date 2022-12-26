@@ -15,9 +15,27 @@ Funcionalidade: API deve retornar todos os usuários cadastrados
 
   Cenario: Chamada método get sem informar página 
     Dado que a URL esteja montada
-    Quando não é informado a página a ser extraida
+    Quando não é informado a página de usuário a ser extraida
     E invocar o método get na Lista de usuário
-    Entao deve trazer lista de usuarios validos
-    E a página deve ser a primeira
-    
+    Entao deve trazer lista de usuarios validos da página '1'
+    E a página exibida deve ser a página '1'
 
+
+
+  Esquema do Cenario: Chamada método get informando a página 
+    Dado que a URL esteja montada
+    Quando é informado a página '<página>' a ser extraida
+    E invocar o método get na Lista de usuário
+    Entao deve trazer lista de usuarios validos da página '<página>'
+    E a página exibida deve ser a página '<página>'
+
+
+    Exemplos: 
+    | página 	|
+    |   1     |
+    |   2     |
+    |   3     |
+
+    
+## base para sem pagina, pagina 1, pagina 2 e outras paginas
+## identificar e barrar quando o data nao tem dados

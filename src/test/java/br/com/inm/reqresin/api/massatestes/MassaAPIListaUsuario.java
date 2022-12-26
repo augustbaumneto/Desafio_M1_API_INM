@@ -22,7 +22,7 @@ public class MassaAPIListaUsuario {
 	//Geral
 	public static final int PAGINA1 = 1;
 	public static final int PAGINA2 = 2;
-	public static final int PAGINA3 = 2;
+	public static final int PAGINA3 = 3;
 	public static final int PER_PAGE = 6;
 	public static final int TOTAL = 12;
 	public static final int TOTAL_PAGES = 2;

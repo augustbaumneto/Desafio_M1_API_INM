@@ -41,7 +41,7 @@ public class PaginaUsuarioJson {
 		this.total=total;
 		this.total_pages=total_pages;
 		
-		data = new UsuarioJson[per_page];
+		data = new UsuarioJson[listausuarios.size()];
 		
 		for (UsuarioJson u : listausuarios) {
 			data[listausuarios.indexOf(u)]= u;
