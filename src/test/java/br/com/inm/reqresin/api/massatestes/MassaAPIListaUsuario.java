@@ -18,6 +18,7 @@ public class MassaAPIListaUsuario {
 
 	//Status Code
 	public static final int STATUS200 = 200;
+	public static final int STATUS204 = 204;
 	
 	//Geral
 	public static final int PAGINA1 = 1;

@@ -3,10 +3,7 @@
  */
 package br.com.inm.reqresin.api.services;
 
-
-
 import java.util.List;
-import java.util.function.BooleanSupplier;
 
 import br.com.inm.reqresin.api.services.json.PaginaUsuarioJson;
 import br.com.inm.reqresin.api.services.json.UsuarioJson;
@@ -15,12 +12,12 @@ import io.restassured.RestAssured;
 /**
  * @author August Neto
  *
- * Classe que representa a API List User (https://reqres.in/)
+ *         Classe que representa a API List User (https://reqres.in/)
  *
  */
 public class UserListAPI extends UserAPIBase {
 
-	//Parametros da resposta 
+	// Parametros da resposta Listar USUARIOS
 	public static final String PARAM_RESP_TOTAL = "total";
 	public static final String PARAM_RESP_DATA = "data";
 	public static final String PARAM_RESP_DATA_ID = "id";
@@ -34,13 +31,15 @@ public class UserListAPI extends UserAPIBase {
 	public static final String PARAM_RESP_SUPPORT = "support";
 	public static final String PARAM_RESP_SUPPORT_URL = "url";
 	public static final String PARAM_RESP_SUPPORT_TEXT = "text";
-	
+
+	// Path Parametros Listar USUARIOS
 	public static final String PARAM_PATH_PAGE = "page";
-	
+
 	private PaginaUsuarioJson respostaapi;
-	
-	
-	//Construtor padrão
+
+	private String urlauxiliar;
+
+	// Construtor padrão
 	public UserListAPI() {
 		super();
 
@@ -50,34 +49,32 @@ public class UserListAPI extends UserAPIBase {
 	 * Prepara a requisição
 	 */
 	public void montaAPIListaUsuarios() {
-		requisicao = 
-				RestAssured.given();				
-				
+		requisicao = RestAssured.given();
+
 	}
-	
+
 	/**
-	 * Chama o metodo get de lista de usuário passando o parametro path da página. Caso seja "" vazio, 
-	 *     o parametro não é informado. Também guarda o json de retorno e monta a os dados em uma classe 
-	 *     java apropriada
+	 * Chama o metodo get de lista de usuário passando o parametro path da página.
+	 * Caso seja "" vazio, o parametro não é informado. Também guarda o json de
+	 * retorno e monta a os dados em uma classe java apropriada
 	 * 
-	 * @param numerodapagina Numero da pagina a ser retornada. Se informado vazio, não utilizada par
+	 * @param numerodapagina Numero da pagina a ser retornada. Se informado vazio,
+	 *                       não utilizada par
 	 * 
 	 */
 	public void chamarAPIListaUsuarios(String numerodapagina) {
-		
-		requisicao = requisicao
-				.when();
+
+		requisicao = requisicao.when();
 		if (numerodapagina.isEmpty())
 			resposta = requisicao.get();
 		else
-			resposta = requisicao.get("?"+PARAM_PATH_PAGE+"="+numerodapagina);
-		
+			resposta = requisicao.get("?" + PARAM_PATH_PAGE + "=" + numerodapagina);
+
 		guardarResposta();
 		montaPagina();
-		
+
 	}
-	
-	
+
 	/**
 	 * 
 	 * Valida se o usuario possui os mesmos dados de comparação
@@ -88,41 +85,40 @@ public class UserListAPI extends UserAPIBase {
 	 * @param primeironome
 	 * @param ultimonome
 	 * @param avatar
-	 * @return  true se os dados estiverem ok, retorna falso se tiver algum dado errado, ou se o numero do usuário for maior que a quantidade de usuários presentes
+	 * @return true se os dados estiverem ok, retorna falso se tiver algum dado
+	 *         errado, ou se o numero do usuário for maior que a quantidade de
+	 *         usuários presentes
 	 */
-	public boolean verificaDadosUsuario(int posicaousuario, int id, String email, String primeironome, String ultimonome, String avatar) {
+	public boolean verificaDadosUsuario(int posicaousuario, int id, String email, String primeironome,
+			String ultimonome, String avatar) {
 
-		if (!(posicaousuario <= respostaapi.getTotal())) { 
+		if (!(posicaousuario <= respostaapi.getTotal())) {
 			return false;
-			}
-		else {
+		} else {
 			UsuarioJson[] usuarios = respostaapi.getData();
-						
-			return (id == usuarios[posicaousuario-1].getId())&&
-					(email.equals(usuarios[posicaousuario-1].getEmail()))&&
-					(primeironome.equals(usuarios[posicaousuario-1].getFirst_name()))&&
-					(ultimonome.equals(usuarios[posicaousuario-1].getLast_name()))&&
-					(avatar.equals(usuarios[posicaousuario-1].getAvatar())); 
+
+			return (id == usuarios[posicaousuario - 1].getId())
+					&& (email.equals(usuarios[posicaousuario - 1].getEmail()))
+					&& (primeironome.equals(usuarios[posicaousuario - 1].getFirst_name()))
+					&& (ultimonome.equals(usuarios[posicaousuario - 1].getLast_name()))
+					&& (avatar.equals(usuarios[posicaousuario - 1].getAvatar()));
 		}
 	}
-	
+
 	/**
 	 * 
 	 * Monta o json em um objeto para facilitar a manipulação no java
 	 * 
 	 */
 	private void montaPagina() {
-		
-		List <UsuarioJson>listausuarios = jsonpath.getList(PARAM_RESP_DATA, UsuarioJson.class);
-			
-		respostaapi = new PaginaUsuarioJson(jsonpath.getInt(PARAM_RESP_PAGE),
-											jsonpath.getInt(PARAM_RESP_PERPAGE),
-											jsonpath.getInt(PARAM_RESP_TOTAL),
-											jsonpath.getInt(PARAM_RESP_TOTALPAGES),
-											listausuarios,
-											jsonpath.getString(PARAM_RESP_SUPPORT+"."+PARAM_RESP_SUPPORT_URL),
-											jsonpath.getString(PARAM_RESP_SUPPORT+"."+PARAM_RESP_SUPPORT_TEXT));
-		
+
+		List<UsuarioJson> listausuarios = jsonpath.getList(PARAM_RESP_DATA, UsuarioJson.class);
+
+		respostaapi = new PaginaUsuarioJson(jsonpath.getInt(PARAM_RESP_PAGE), jsonpath.getInt(PARAM_RESP_PERPAGE),
+				jsonpath.getInt(PARAM_RESP_TOTAL), jsonpath.getInt(PARAM_RESP_TOTALPAGES), listausuarios,
+				jsonpath.getString(PARAM_RESP_SUPPORT + "." + PARAM_RESP_SUPPORT_URL),
+				jsonpath.getString(PARAM_RESP_SUPPORT + "." + PARAM_RESP_SUPPORT_TEXT));
+
 	}
 
 	/**
@@ -132,7 +128,7 @@ public class UserListAPI extends UserAPIBase {
 	 * @return
 	 */
 	public int verificaPaginaAtual() {
-		
+
 		return respostaapi.getPage();
 	}
 
@@ -146,10 +142,9 @@ public class UserListAPI extends UserAPIBase {
 	 * @return
 	 */
 	public boolean verificaDadosGerais(int perpage, int total, int totalpages) {
-		
-		return (perpage == respostaapi.getPer_page())&&
-				(total== respostaapi.getTotal())&&
-				(totalpages== respostaapi.getTotal_pages());
+
+		return (perpage == respostaapi.getPer_page()) && (total == respostaapi.getTotal())
+				&& (totalpages == respostaapi.getTotal_pages());
 	}
 
 	/**
@@ -161,10 +156,9 @@ public class UserListAPI extends UserAPIBase {
 	 * @return
 	 */
 	public boolean verificaDadosSuporte(String urlsupport, String textsupport) {
-		
 
-		return (urlsupport.equals(respostaapi.getSupport().getUrl()))&&
-				(textsupport.equals(respostaapi.getSupport().getText()));
+		return (urlsupport.equals(respostaapi.getSupport().getUrl()))
+				&& (textsupport.equals(respostaapi.getSupport().getText()));
 	}
 
 	/**
@@ -174,16 +168,32 @@ public class UserListAPI extends UserAPIBase {
 	 * @return
 	 */
 	public boolean verificaSeNaoHaUsuario() {
-		return respostaapi.getData().length==0;
+		return respostaapi.getData().length == 0;
 	}
-	
-	/* packages para separação de codigos
 
-dependencia do jackson.
+	/**
+	 * 
+	 * Prepara o complemento da url para apagar o usuario
+	 * 
+	 * @param idapagar
+	 */
+	public void prepararUrlApagar(int idapagar) {
 
-versão iniciais
-listaUsuarios.featueres
-RunListaUsuarioTest
-ListaUsuarioSteps
-pom xml jackson*/
+			urlauxiliar = "/" + idapagar;
+
+	}
+
+	/**
+	 * Chama a api para deletar o usuário
+	 * 
+	 */
+	public void chamarAPIDeletaUsuario() {
+		requisicao = requisicao.when();
+
+		resposta = requisicao.delete(urlauxiliar);
+
+		guardarResposta();
+
+	}
+
 }

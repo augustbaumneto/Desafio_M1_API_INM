@@ -3,10 +3,8 @@ package br.com.inm.reqresin.api.acceptance.steps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import br.com.inm.reqresin.api.massatestes.MassaAPIListaUsuario;
 import br.com.inm.reqresin.api.services.UserListAPI;
-import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -23,18 +21,10 @@ public class ListaUsuarioSteps {
 	public UserListAPI apiusuario;
 	public String numeropagina;
 
-	/**
-	 * Classe para preparar o cenário
-	 * 
-	 */
-	@Before
-	public void setup() {
-		apiusuario = new UserListAPI();
-	}
 
-	@Dado("que a URL esteja montada")
+	@Dado("que a URL da API Listar Usuarios esteja montada")
 	public void que_a_url_esteja_montada_com_método_get() {
-
+		apiusuario = new UserListAPI();
 		apiusuario.montaAPIListaUsuarios();
 
 	}
@@ -122,9 +112,8 @@ public class ListaUsuarioSteps {
 		}
 
 		}
-
-		// System.out.println(resposta.asPrettyString());
-
+		
+		apiusuario.logResposta();
 	}
 	
 	@Quando("é informado a página {string} a ser extraida")
