@@ -6,19 +6,19 @@ package br.com.inm.reqresin.api.services.json;
 import java.util.List;
 
 /**
- * Classe padrão para o Json de resposta do listar usuário
+ * Classe padrão para o Json de resposta da api listar usuário
  * 
  * @author August Neto
  *
  */
-public class PaginaUsuarioJson {
+public class PaginaListaUsuarioResJson {
 
 	private int page;
 	private int per_page;
 	private int total;
 	private int total_pages;
 	
-	private UsuarioJson data[];
+	private UsuarioResListaUsuarioJson data[];
 	
 	private SuporteListaUsuarioJson support;
 	
@@ -26,7 +26,7 @@ public class PaginaUsuarioJson {
 	 * Construtor padrão
 	 * 
 	 */
-	public PaginaUsuarioJson() {
+	public PaginaListaUsuarioResJson() {
 	}
 	
 
@@ -35,15 +35,15 @@ public class PaginaUsuarioJson {
 	 * 
 	 */
 
-	public PaginaUsuarioJson(int page, int per_page, int total, int total_pages, List<UsuarioJson> listausuarios, String url, String text) {
+	public PaginaListaUsuarioResJson(int page, int per_page, int total, int total_pages, List<UsuarioResListaUsuarioJson> listausuarios, String url, String text) {
 		this.page=page;
 		this.per_page=per_page;
 		this.total=total;
 		this.total_pages=total_pages;
 		
-		data = new UsuarioJson[listausuarios.size()];
+		data = new UsuarioResListaUsuarioJson[listausuarios.size()];
 		
-		for (UsuarioJson u : listausuarios) {
+		for (UsuarioResListaUsuarioJson u : listausuarios) {
 			data[listausuarios.indexOf(u)]= u;
 			
 		}
@@ -113,14 +113,14 @@ public class PaginaUsuarioJson {
 	/**
 	 * @return the data
 	 */
-	public UsuarioJson[] getData() {
+	public UsuarioResListaUsuarioJson[] getData() {
 		return data;
 	}
 
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(UsuarioJson[] data) {
+	public void setData(UsuarioResListaUsuarioJson[] data) {
 		this.data = data;
 	}
 

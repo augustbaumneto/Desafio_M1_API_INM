@@ -18,8 +18,8 @@ import io.cucumber.java.pt.Quando;
  */
 public class ListaUsuarioSteps {
 
-	public UserListAPI apiusuario;
-	public String numeropagina;
+	private UserListAPI apiusuario;
+	private String numeropagina;
 
 
 	@Dado("que a URL da API Listar Usuarios esteja montada")

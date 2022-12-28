@@ -5,12 +5,12 @@ package br.com.inm.reqresin.api.services.json;
 
 /**
  * 
- * Classe que representa o JSON de usuário
+ * Classe que representa o JSON de usuário da reposta da api lista de usuarios
  * 
  * @author August Neto
  *
  */
-public class UsuarioJson {
+public class UsuarioResListaUsuarioJson {
 
 	
 	private int id;
@@ -23,7 +23,7 @@ public class UsuarioJson {
 	 * Construtor base
 	 * 
 	 */
-	public UsuarioJson() {
+	public UsuarioResListaUsuarioJson() {
 		
 	}
 
@@ -31,7 +31,7 @@ public class UsuarioJson {
 	 * Construtor completo
 	 * 
 	 */
-	public UsuarioJson(int id, String email, String primeironome, String ultimonome, String avatar) {
+	public UsuarioResListaUsuarioJson(int id, String email, String primeironome, String ultimonome, String avatar) {
 		this.id=id;
 		this.email = email;
 		first_name = primeironome;

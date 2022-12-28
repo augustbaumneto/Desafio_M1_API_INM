@@ -2,8 +2,7 @@ package br.com.inm.reqresin.api.acceptance.steps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-import br.com.inm.reqresin.api.services.UserListAPI;
+import br.com.inm.reqresin.api.services.UserDeleteAPI;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -17,15 +16,15 @@ import io.cucumber.java.pt.Quando;
  */
 public class DeletaUsuarioSteps {
 
-	public UserListAPI apiusuario;
+	private UserDeleteAPI apideletausuario;
 	
-	public int idapagar; 
+	private int idapagar; 
 
 
 	@Dado("que a URL da API Deletar usuário esteja montada")
 	public void que_a_url_da_api_deletar_usuário_esteja_montada() {
-		apiusuario = new UserListAPI();
-		apiusuario.montaAPIListaUsuarios();
+		apideletausuario = new UserDeleteAPI();
+		apideletausuario.montaAPIApagaUsuario();
 	}
 	@Dado("é informado na url o {int} do usuário a ser apagado")
 	public void é_informado_na_url_o_do_usuário_a_ser_apagado(int idusuario) {
@@ -35,18 +34,18 @@ public class DeletaUsuarioSteps {
 		if (idapagar <= 0 || idapagar > 12) 
 			throw new IllegalArgumentException("Usuário não existente");
 		
-	    apiusuario.prepararUrlApagar(idapagar);
+	    apideletausuario.prepararUrlApagar(idapagar);
 	}
 	@Quando("invocar o método delete na API de usuários")
 	public void invocar_o_método_delete_na_api_de_usuários() {
-		apiusuario.chamarAPIDeletaUsuario();
+		apideletausuario.chamarAPIDeletaUsuario();
 	}
 	@Entao("usuário deve ser apagado e retornado o código {string}")
 	public void usuário_deve_ser_apagado_e_retornado_o_código(String codigoretorno) {
 		// Checa o status code
-		assertEquals(apiusuario.retornaStatusCode(), Integer.parseInt(codigoretorno));
+		assertEquals(apideletausuario.retornaStatusCode(), Integer.parseInt(codigoretorno));
 		
-		apiusuario.logResposta();
+		apideletausuario.logResposta();
 	}
 
 

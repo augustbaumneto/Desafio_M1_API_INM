@@ -5,8 +5,8 @@ package br.com.inm.reqresin.api.services;
 
 import java.util.List;
 
-import br.com.inm.reqresin.api.services.json.PaginaUsuarioJson;
-import br.com.inm.reqresin.api.services.json.UsuarioJson;
+import br.com.inm.reqresin.api.services.json.PaginaListaUsuarioResJson;
+import br.com.inm.reqresin.api.services.json.UsuarioResListaUsuarioJson;
 import io.restassured.RestAssured;
 
 /**
@@ -35,9 +35,8 @@ public class UserListAPI extends UserAPIBase {
 	// Path Parametros Listar USUARIOS
 	public static final String PARAM_PATH_PAGE = "page";
 
-	private PaginaUsuarioJson respostaapi;
-
-	private String urlauxiliar;
+	private PaginaListaUsuarioResJson respostaapi;
+	
 
 	// Construtor padrão
 	public UserListAPI() {
@@ -46,12 +45,14 @@ public class UserListAPI extends UserAPIBase {
 	}
 
 	/**
-	 * Prepara a requisição
+	 * Prepara a requisição para listar usuarios
 	 */
 	public void montaAPIListaUsuarios() {
-		requisicao = RestAssured.given();
+		requisicao = RestAssured
+				.given();
 
 	}
+	
 
 	/**
 	 * Chama o metodo get de lista de usuário passando o parametro path da página.
@@ -95,7 +96,7 @@ public class UserListAPI extends UserAPIBase {
 		if (!(posicaousuario <= respostaapi.getTotal())) {
 			return false;
 		} else {
-			UsuarioJson[] usuarios = respostaapi.getData();
+			UsuarioResListaUsuarioJson[] usuarios = respostaapi.getData();
 
 			return (id == usuarios[posicaousuario - 1].getId())
 					&& (email.equals(usuarios[posicaousuario - 1].getEmail()))
@@ -112,9 +113,9 @@ public class UserListAPI extends UserAPIBase {
 	 */
 	private void montaPagina() {
 
-		List<UsuarioJson> listausuarios = jsonpath.getList(PARAM_RESP_DATA, UsuarioJson.class);
+		List<UsuarioResListaUsuarioJson> listausuarios = jsonpath.getList(PARAM_RESP_DATA, UsuarioResListaUsuarioJson.class);
 
-		respostaapi = new PaginaUsuarioJson(jsonpath.getInt(PARAM_RESP_PAGE), jsonpath.getInt(PARAM_RESP_PERPAGE),
+		respostaapi = new PaginaListaUsuarioResJson(jsonpath.getInt(PARAM_RESP_PAGE), jsonpath.getInt(PARAM_RESP_PERPAGE),
 				jsonpath.getInt(PARAM_RESP_TOTAL), jsonpath.getInt(PARAM_RESP_TOTALPAGES), listausuarios,
 				jsonpath.getString(PARAM_RESP_SUPPORT + "." + PARAM_RESP_SUPPORT_URL),
 				jsonpath.getString(PARAM_RESP_SUPPORT + "." + PARAM_RESP_SUPPORT_TEXT));
@@ -171,29 +172,5 @@ public class UserListAPI extends UserAPIBase {
 		return respostaapi.getData().length == 0;
 	}
 
-	/**
-	 * 
-	 * Prepara o complemento da url para apagar o usuario
-	 * 
-	 * @param idapagar
-	 */
-	public void prepararUrlApagar(int idapagar) {
-
-			urlauxiliar = "/" + idapagar;
-
-	}
-
-	/**
-	 * Chama a api para deletar o usuário
-	 * 
-	 */
-	public void chamarAPIDeletaUsuario() {
-		requisicao = requisicao.when();
-
-		resposta = requisicao.delete(urlauxiliar);
-
-		guardarResposta();
-
-	}
 
 }
