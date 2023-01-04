@@ -18,7 +18,7 @@ import io.restassured.specification.RequestSpecification;
  * @author August Neto
  *
  */
-public class UserAPIBase {
+public abstract class UserAPIBase {
 
 		// URL da api para consulta de usuário único
 		protected static final String URI_USERS = "https://reqres.in/api/users";
