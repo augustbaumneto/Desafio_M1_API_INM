@@ -1,7 +1,7 @@
 # desafio-api-m1-t1-august-neto
 
 <a id="Sobre"></a>
-##Sobre o projeto📊  
+## Sobre o projeto📊  
   
 O projeto consisti em uma automação de testes de API para a entrega do primeiro desafio do módulo 1 do programa de quality engineering da Inmetrics.  
   
@@ -35,7 +35,7 @@ Api responsável por apagar um usuário, deve ser informado no parâmetro de cam
 Concluído a primeira versão. 🚀
   
 <a id="tabela-de-conteudo"></a>
-##Tabela de conteúdos🤓  
+## Tabela de conteúdos🤓  
 =================
 <!--ts-->
    * [Sobre](#Sobre)
@@ -56,7 +56,7 @@ Concluído a primeira versão. 🚀
 <!--te-->
   
 <a id="tecnologias"></a>
-##Tecnologias🛰️  
+## Tecnologias🛰️  
   
 As seguintes ferramentas foram usadas na construção do projeto:  
   
@@ -70,18 +70,18 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Lombok - 1.18.24](https://projectlombok.org/) 
   
 <a id="como-usar"></a>
-##Como Usar🧐  
+## Como Usar🧐  
   
 Não é necessário rodar nenhuma aplicação a parte para rodar os scripts de automação, basta seguir os passos e preparar o ambiente.  
   
 <a id="pre-requisitos"></a>  
-###Pré-requisitos⛽  
+### Pré-requisitos⛽  
 Você precisa ter instalado na máquina o [Git](https://git-scm.com), uma IDE (será exemplificado com o [Eclipse](https://www.eclipse.org/downloads/)) e o [Maven](https://maven.apache.org/).
   
 <a id="baixando-e-preparando"></a>
-###Baixando o projeto e preparando o ambiente🥘  
+### Baixando o projeto e preparando o ambiente🥘  
   
-####Direto pelo git💽  
+#### Direto pelo git💽  
   
 ```bash
 # Clone este repositório
@@ -95,7 +95,7 @@ $ mvn install
 
 ```
   
-####Pelo IDE (Eclipse)🆚  
+#### Pelo IDE (Eclipse)🆚  
   
   1. Abre o Eclipse e clique em "File" > "Import";  
   ![](/src/test/resources/img/import-eclipse/Passo1.png)
@@ -114,8 +114,8 @@ $ mvn install
   
   6. Aguarde o projeto atualizar.  
   
-<a id=rodando-os-testes"></a>
-###Rodando os testes🏃‍♂️  
+<a id="rodando-os-testes"></a>
+### Rodando os testes🏃‍  
   
   Você escolher rodar todos os testes de uma fez, ou rodar apenas os testes de uma determinada API.  
   
@@ -138,8 +138,8 @@ $ mvn install
   6. Para avaliar os cenários executados, acesse os arquivos .feature dentro da pasta __"features"__ dentro do caminho: "src" > "test" > "resources".  
   ![](/src/test/resources/img/rodar/Passo6.png)
   
-<a id=rodando-os-testes"></a>
-###Alterando a massa de teste🥯  
+<a id="alterando-massa"></a>
+### Alterando a massa de teste🥯  
   
   1. Dentro do IDE, acesse a pasta (package) __"massatestes"__ dentro do caminho: "src" > "test" > "java" > "br" > "com" > "inm" > "reqresin" > "api";  
   ![](/src/test/resources/img/alterar-massa/Passo1.png)
@@ -150,15 +150,15 @@ $ mvn install
   3. Altere a constante desejada, salve o arquivo e rode novamente.  
   ![](/src/test/resources/img/alterar-massa/Passo3.png)
   
-<a id=autor"></a>
-##Autor😉  
+<a id="autor"></a>
+## Autor😉  
 
 Feito por August Baumgartner  
 [![Linkedin Badge](https://img.shields.io/badge/-August-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://br.linkedin.com/in/august-baumgartner-neto-98512720)](https://br.linkedin.com/in/august-baumgartner-neto-98512720) 
 [![Gmail Badge](https://img.shields.io/badge/-augustbn@inmetrics.com.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:augustbn@inmetrics.com.br)](mailto:augustbn@inmetrics.com.br)
 
   
-<a id=licenca"></a>
-##Licença⚠️  
+<a id="licenca"></a>
+## Licença⚠️  
   
 Este projeto esta sobe a licença [MIT](./LICENSE.md).
