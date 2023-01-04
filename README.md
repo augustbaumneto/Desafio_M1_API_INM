@@ -1,25 +1,29 @@
 # desafio-api-m1-t1-august-neto
 
 <a id="Sobre"></a>
-## Sobre o projeto📊  
+## Sobre o projeto📊
+====================
   
 O projeto consisti em uma automação de testes de API para a entrega do primeiro desafio do módulo 1 do programa de quality engineering da Inmetrics.  
   
 Foram implantados testes relacionados a 4 API disponibilizadas pelo site [REQRES](https://reqres.in):
   
 <a id="list-users"></a>
-### __LIST USERS__📜  
+### __LIST USERS__📜
+--------------------
 Api responsável por trazer a lista total de usuários cadastrada, você pode enviar o parâmetro de caminho (path parameter) __"page"__ contendo o numero da página para trazer, ele irá retornar um json contendo a quantidade total de usuários e todos os usuários da página. Nessa API foram implantados os seguintes cenários de testes:  
 * Chamada do método sem utilizar parâmetro de caminho (path parameter);  
 * Chamada do método utilizando o parâmetro de caminho (path parameter) em 3 situações distintas: página 1 (com usuários), página 2 (com usuários) e página 3 (sem usuários).  
   
 <a id="create"></a>
-### __CREATE__👶  
+### __CREATE__👶
+----------------
 Api responsável por criar um usuário, na chamada deve ser enviado um json contendo o nome e o cargo, e api deve retornar o usuário criado com os mesmos dados um id e uma data de criação. Nessa API foram implantado apenas o seguinte cenário de testes:  
 * Chamada do método padrão informando o body.  
   
 <a id="update"></a>
-### __UPDATE__🦿  
+### __UPDATE__🦿
+----------------  
 Api responsável por atualizar dados de um usuário cadastrado. Deve ser informado no parâmetro de caminho (path parameter) o usuario a ser alterado, e na chamada deve ser enviado um json contendo ou nome a ser alterado ou o cargo ou ambas as informações. A resposta dessa api deve ser um json com os dados atualizados do nome e cargo e data de alteração. Nessa API foram implantados os seguintes cenários de testes:  
 * Chamada do método utilizando __"put"__ utilizando parâmetro de caminho (path parameter) e alterando apenas um dos dados de cada vez (nome e cargo);  
 * Chamada do método utilizando __"put"__ utilizando parâmetro de caminho (path parameter) e alterando os dois dados ao mesmo tempo (nome e cargo);  
@@ -27,7 +31,8 @@ Api responsável por atualizar dados de um usuário cadastrado. Deve ser informa
 * Chamada do método utilizando __"patch"__ utilizando parâmetro de caminho (path parameter) e alterando os dois dados ao mesmo tempo (nome e cargo).  
   
 <a id="delete"></a>
-### __DELETE__👻  
+### __DELETE__👻
+----------------
 Api responsável por apagar um usuário, deve ser informado no parâmetro de caminho (path parameter) o usuario a ser excluido. Nessa API foram implantado apenas o seguinte cenário de testes:  
 * Chamada do método padrão informando parâmetro de caminho (path parameter) em 4 situações, apagando 1 usuário por cada teste.  
   
@@ -56,7 +61,8 @@ Concluído a primeira versão. 🚀
 <!--te-->
   
 <a id="tecnologias"></a>
-## Tecnologias🛰️  
+## Tecnologias🛰️
+================
   
 As seguintes ferramentas foram usadas na construção do projeto:  
   
@@ -70,16 +76,19 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Lombok - 1.18.24](https://projectlombok.org/) 
   
 <a id="como-usar"></a>
-## Como Usar🧐  
+## Como Usar🧐
+==============
   
 Não é necessário rodar nenhuma aplicação a parte para rodar os scripts de automação, basta seguir os passos e preparar o ambiente.  
   
 <a id="pre-requisitos"></a>  
-### Pré-requisitos⛽  
+### Pré-requisitos⛽
+--------------------
 Você precisa ter instalado na máquina o [Git](https://git-scm.com), uma IDE (será exemplificado com o [Eclipse](https://www.eclipse.org/downloads/)) e o [Maven](https://maven.apache.org/).
   
 <a id="baixando-e-preparando"></a>
-### Baixando o projeto e preparando o ambiente🥘  
+### Baixando o projeto e preparando o ambiente🥘
+------------------------------------------------ 
   
 #### Direto pelo git💽  
   
@@ -115,7 +124,8 @@ $ mvn install
   6. Aguarde o projeto atualizar.  
   
 <a id="rodando-os-testes"></a>
-### Rodando os testes🏃‍  
+### Rodando os testes🏃‍
+----------------------- 
   
   Você escolher rodar todos os testes de uma fez, ou rodar apenas os testes de uma determinada API.  
   
@@ -139,7 +149,8 @@ $ mvn install
   ![](/src/test/resources/img/rodar/Passo6.png)
   
 <a id="alterando-massa"></a>
-### Alterando a massa de teste🥯  
+### Alterando a massa de teste🥯
+-------------------------------
   
   1. Dentro do IDE, acesse a pasta (package) __"massatestes"__ dentro do caminho: "src" > "test" > "java" > "br" > "com" > "inm" > "reqresin" > "api";  
   ![](/src/test/resources/img/alterar-massa/Passo1.png)
@@ -151,14 +162,16 @@ $ mvn install
   ![](/src/test/resources/img/alterar-massa/Passo3.png)
   
 <a id="autor"></a>
-## Autor😉  
-
+## Autor😉
+==========
+  
 Feito por August Baumgartner  
 [![Linkedin Badge](https://img.shields.io/badge/-August-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://br.linkedin.com/in/august-baumgartner-neto-98512720)](https://br.linkedin.com/in/august-baumgartner-neto-98512720) 
 [![Gmail Badge](https://img.shields.io/badge/-augustbn@inmetrics.com.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:augustbn@inmetrics.com.br)](mailto:augustbn@inmetrics.com.br)
 
   
 <a id="licenca"></a>
-## Licença⚠️  
+## Licença⚠️
+============
   
 Este projeto esta sobe a licença [MIT](./LICENSE.md).
