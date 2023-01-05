@@ -1,28 +1,28 @@
 # desafio-api-m1-t1-august-neto
 
-<a id="Sobre"></a>
+<a id="Sobre" ></a>
 ## Sobre o projeto📊
-====================
+-----------------------
   
 O projeto consisti em uma automação de testes de API para a entrega do primeiro desafio do módulo 1 do programa de quality engineering da Inmetrics.  
   
-Foram implantados testes relacionados a 4 API disponibilizadas pelo site [REQRES](https://reqres.in):
+Foram implantados testes relacionados a 4 API disponibilizadas pelo site [REQRES](https://reqres.in), todos os testes validaram o corpo da resposta e o status code.
   
-<a id="list-users"></a>
-### __LIST USERS__📜
+<a id="list-users" ></a>
+### LIST USERS📜
 --------------------
 Api responsável por trazer a lista total de usuários cadastrada, você pode enviar o parâmetro de caminho (path parameter) __"page"__ contendo o numero da página para trazer, ele irá retornar um json contendo a quantidade total de usuários e todos os usuários da página. Nessa API foram implantados os seguintes cenários de testes:  
 * Chamada do método sem utilizar parâmetro de caminho (path parameter);  
 * Chamada do método utilizando o parâmetro de caminho (path parameter) em 3 situações distintas: página 1 (com usuários), página 2 (com usuários) e página 3 (sem usuários).  
   
-<a id="create"></a>
-### __CREATE__👶
+<a id="create" ></a>
+### CREATE👶
 ----------------
 Api responsável por criar um usuário, na chamada deve ser enviado um json contendo o nome e o cargo, e api deve retornar o usuário criado com os mesmos dados um id e uma data de criação. Nessa API foram implantado apenas o seguinte cenário de testes:  
 * Chamada do método padrão informando o body.  
   
-<a id="update"></a>
-### __UPDATE__🦿
+<a id="update" ></a>
+### UPDATE🦿
 ----------------  
 Api responsável por atualizar dados de um usuário cadastrado. Deve ser informado no parâmetro de caminho (path parameter) o usuario a ser alterado, e na chamada deve ser enviado um json contendo ou nome a ser alterado ou o cargo ou ambas as informações. A resposta dessa api deve ser um json com os dados atualizados do nome e cargo e data de alteração. Nessa API foram implantados os seguintes cenários de testes:  
 * Chamada do método utilizando __"put"__ utilizando parâmetro de caminho (path parameter) e alterando apenas um dos dados de cada vez (nome e cargo);  
@@ -30,18 +30,25 @@ Api responsável por atualizar dados de um usuário cadastrado. Deve ser informa
 * Chamada do método utilizando __"patch"__ utilizando parâmetro de caminho (path parameter) e alterando apenas um dos dados de cada vez (nome e cargo);   
 * Chamada do método utilizando __"patch"__ utilizando parâmetro de caminho (path parameter) e alterando os dois dados ao mesmo tempo (nome e cargo).  
   
-<a id="delete"></a>
-### __DELETE__👻
+<a id="delete" ></a>
+### DELETE👻
 ----------------
 Api responsável por apagar um usuário, deve ser informado no parâmetro de caminho (path parameter) o usuario a ser excluido. Nessa API foram implantado apenas o seguinte cenário de testes:  
 * Chamada do método padrão informando parâmetro de caminho (path parameter) em 4 situações, apagando 1 usuário por cada teste.  
   
 #### Status🏆  
 Concluído a primeira versão. 🚀
+O que não foi feito:
+  * Readme.md com links internos funcionais e para o arquivo de licença;
+  * Captura das requesições e resposta de cada requisição e organização em evidências;
+  * Uso de determinados métodos do Rest Assured;
+  * Manipulações para construção de bodys parciais
+  * Reportes configurados no cucumber;
+  * API e Funcionalidades adicionais.
   
-<a id="tabela-de-conteudo"></a>
+<a id="tabela-de-conteudo" ></a>
 ## Tabela de conteúdos🤓  
-=================
+------------------------------
 <!--ts-->
    * [Sobre](#Sobre)
       * [LIST USERS](#list-users)
@@ -62,7 +69,7 @@ Concluído a primeira versão. 🚀
   
 <a id="tecnologias"></a>
 ## Tecnologias🛰️
-================
+-----------------------------
   
 As seguintes ferramentas foram usadas na construção do projeto:  
   
@@ -77,7 +84,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
   
 <a id="como-usar"></a>
 ## Como Usar🧐
-==============
+------------------
   
 Não é necessário rodar nenhuma aplicação a parte para rodar os scripts de automação, basta seguir os passos e preparar o ambiente.  
   
@@ -107,7 +114,7 @@ $ mvn install
 #### Pelo IDE (Eclipse)🆚  
   
   1. Abre o Eclipse e clique em "File" > "Import";  
-  ![](/src/test/resources/img/import-eclipse/Passo1.png)
+  ![a](/src/test/resources/img/import-eclipse/Passo1.png)
   
   2. Selecione a pasta "Maven" > "Existing Manven Projects" e clique em "Next";  
   ![](/src/test/resources/img/import-eclipse/Passo2.png)
@@ -127,14 +134,14 @@ $ mvn install
 ### Rodando os testes🏃‍
 ----------------------- 
   
-  Você escolher rodar todos os testes de uma fez, ou rodar apenas os testes de uma determinada API.  
+  Você pode escolher rodar todos os testes de uma vez, ou rodar apenas os testes de uma determinada API.  
   
   1. Dentro do IDE, expanda o projeto e vá até a pasta (package) __"acceptance"__ dentro do caminho: "src" > "test" > "java" > "br" > "com" > "inm" > "reqresin" > "api";  
-  ![](/src/test/resources/img/rodar/Passo1.png)
+  ![a](/src/test/resources/img/rodar/Passo1.png)
   
   2. Para rodar todos os testes, clique com o lado diretio em cima da pasta __"acceptance"__ e selecione a opção "Run As" > "Junit Test";  
   ![](/src/test/resources/img/rodar/Passo2.png)
-      1. Se for rodar apenas os testes de uma API, expanda a pasta __"aceptance"__, selecione a classe "Run" da api desejada, e faço o mesmo procedimento anterior;  
+      1. Se for rodar apenas os testes de uma API, expanda a pasta __"acceptance"__, selecione a classe "Run" da api desejada, e faço o mesmo procedimento anterior;  
       ![](/src/test/resources/img/rodar/Passo2.1.png)
   3. Aguarde rodar os testes, e acesse a aba Junit para visualizar os resultados dos testes;  
   ![](/src/test/resources/img/rodar/Passo3.png)
@@ -163,7 +170,7 @@ $ mvn install
   
 <a id="autor"></a>
 ## Autor😉
-==========
+------------------
   
 Feito por August Baumgartner  
 [![Linkedin Badge](https://img.shields.io/badge/-August-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://br.linkedin.com/in/august-baumgartner-neto-98512720)](https://br.linkedin.com/in/august-baumgartner-neto-98512720) 
@@ -172,6 +179,6 @@ Feito por August Baumgartner
   
 <a id="licenca"></a>
 ## Licença⚠️
-============
+------------------
   
-Este projeto esta sobe a licença [MIT](./LICENSE.md).
+Este projeto esta sobe a licença [MIT](/LICENSE.md).
