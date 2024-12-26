@@ -67,8 +67,8 @@ public class MassaAPIListaUsuario {
 
 	
 	//Support
-	public static final String URL_SUPPORT = "https://reqres.in/#support-heading";
-	public static final String TEXT_SUPPORT = "To keep ReqRes free, contributions towards server costs are appreciated!";
+	public static final String URL_SUPPORT = "https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral";
+	public static final String TEXT_SUPPORT = "Tired of writing endless social media content? Let Content Caddy generate it for you.";
 
 	
 	

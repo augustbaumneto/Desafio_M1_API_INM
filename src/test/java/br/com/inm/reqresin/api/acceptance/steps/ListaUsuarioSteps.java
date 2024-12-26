@@ -84,6 +84,7 @@ public class ListaUsuarioSteps {
 		assertTrue(apiusuario.verificaDadosGerais(MassaAPIListaUsuario.PER_PAGE, MassaAPIListaUsuario.TOTAL,
 				MassaAPIListaUsuario.TOTAL_PAGES));
 
+
 		assertTrue(
 				apiusuario.verificaDadosSuporte(MassaAPIListaUsuario.URL_SUPPORT, MassaAPIListaUsuario.TEXT_SUPPORT));
 	}
