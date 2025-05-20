@@ -7,7 +7,6 @@ package br.com.inm.reqresin.api.services;
 
 import br.com.inm.reqresin.api.services.json.UsuarioReqJson;
 import br.com.inm.reqresin.api.services.json.UsuarioResCriadoJson;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 /**
@@ -39,8 +38,7 @@ public class UserCreateAPI extends UserAPIBase {
 	public void montaAPICriaUsuario(String nome, String cargo) {
 		usuariorequisicao = new UsuarioReqJson(nome, cargo);
 		
-		requisicao = RestAssured
-						.given()
+		requisicao = requisicao
 							.body(usuariorequisicao)
 							.contentType(ContentType.JSON);
 	}

@@ -5,8 +5,6 @@ package br.com.inm.reqresin.api.services;
 
 
 
-import static io.restassured.RestAssured.given;
-
 import br.com.inm.reqresin.api.services.json.UsuarioReqJson;
 import br.com.inm.reqresin.api.services.json.UsuarioResEditadoJson;
 import io.restassured.http.ContentType;
@@ -57,7 +55,7 @@ public class UserEditAPI extends UserAPIBase {
 			
 		}
 		
-		requisicao = given()
+		requisicao = requisicao
 							.body(usuariorequisicao)
 							.contentType(ContentType.JSON);
 	}

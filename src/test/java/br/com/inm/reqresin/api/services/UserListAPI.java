@@ -7,7 +7,6 @@ import java.util.List;
 
 import br.com.inm.reqresin.api.services.json.PaginaListaUsuarioResJson;
 import br.com.inm.reqresin.api.services.json.UsuarioResListaUsuarioJson;
-import io.restassured.RestAssured;
 
 /**
  * @author August Neto
@@ -48,8 +47,8 @@ public class UserListAPI extends UserAPIBase {
 	 * Prepara a requisição para listar usuarios
 	 */
 	public void montaAPIListaUsuarios() {
-		requisicao = RestAssured
-				.given();
+		//Não é necessário nenhum parâmetro específico para essa requisição
+		requisicao = requisicao;
 
 	}
 	

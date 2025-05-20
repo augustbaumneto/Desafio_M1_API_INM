@@ -5,6 +5,8 @@ package br.com.inm.reqresin.api.services;
 
 import static io.restassured.RestAssured.*;
 
+import br.com.inm.reqresin.api.massatestes.DadosGeraisAPI;
+import io.restassured.http.Header;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -27,7 +29,9 @@ public abstract class UserAPIBase {
 		protected Response resposta;
 		protected ValidatableResponse json;
 		protected JsonPath jsonpath;
-	
+		
+		//Nome de parâmetros comuns do header
+		private final String XAPIKEY = "x-api-key";
 	
 	/**
 	 * 
@@ -38,6 +42,9 @@ public abstract class UserAPIBase {
 		
 		//Definir a base da URL
 		baseURI = URI_USERS;
+		Header headerapikey = new Header(XAPIKEY, DadosGeraisAPI.APIKEYVALUE);
+		requisicao =given()
+						.header(headerapikey);
 	}
 	
 	/**

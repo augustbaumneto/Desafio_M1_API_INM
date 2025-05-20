@@ -4,7 +4,6 @@
 package br.com.inm.reqresin.api.services;
 
 
-import io.restassured.RestAssured;
 
 /**
  * @author August Neto
@@ -27,8 +26,8 @@ public class UserDeleteAPI extends UserAPIBase {
 	 * Prepara a requisição para apagar usuarios
 	 */
 	public void montaAPIApagaUsuario() {
-		requisicao = RestAssured
-				.given();
+		requisicao = requisicao;
+		//Não é necessário montar nenhum parâmetro específico para essa chamada
 
 	}
 
